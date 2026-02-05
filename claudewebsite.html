@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioClean | Bacterial Remediation of Microplastics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #27ae60 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .focus-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Navigation */
+        .nav {
+            background: rgba(30, 60, 114, 0.95);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #27ae60;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section Styles */
+        .section {
+            margin: 4rem 0;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #1e3c72;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #27ae60, #2a5298);
+            border-radius: 2px;
+        }
+
+        /* Problem Statement */
+        .problem-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
+            border-left: 5px solid #e74c3c;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .problem-box h3 {
+            color: #c0392b;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #27ae60;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #27ae60;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        /* Solution Cards */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 5px solid #2a5298;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .solution-card h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .solution-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Innovation Section */
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .innovation-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid #27ae60;
+            transition: transform 0.3s;
+        }
+
+        .innovation-item:hover {
+            transform: translateX(10px);
+        }
+
+        .innovation-item h4 {
+            color: #27ae60;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        /* Process Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #2a5298, #27ae60);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 45%;
+            position: relative;
+        }
+
+        .timeline-content h4 {
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #27ae60;
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px #27ae60;
+        }
+
+        /* Impact Section */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .impact-card {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .impact-card:hover {
+            transform: scale(1.05);
+        }
+
+        .impact-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .impact-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Bacteria Section */
+        .bacteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .bacteria-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-top: 5px solid #8e44ad;
+        }
+
+        .bacteria-card h4 {
+            color: #8e44ad;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .bacteria-card .target {
+            background: #f3e5f5;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: #6a1b9a;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 20px;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.6);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            margin-bottom: 1rem;
+            color: #27ae60;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .nav-content {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>BioClean</h1>
+            <p class="tagline">Bacterial Remediation of Microplastic-Contaminated Sludge</p>
+            <p class="subtitle">Transforming wastewater treatment with nature's solution to plastic pollution</p>
+            <span class="focus-badge">🧪 Green Chemistry</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#problem">Problem</a>
+            <a href="#solution">Solution</a>
+            <a href="#innovation">Innovation</a>
+            <a href="#feasibility">Feasibility</a>
+            <a href="#impact">Impact</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Problem Statement -->
+        <section id="problem" class="section">
+            <h2 class="section-title">The Challenge</h2>
+            <div class="problem-box">
+                <h3>⚠️ The Microplastic Crisis in Wastewater Treatment</h3>
+                <p>Microplastics (MPs) are captured in wastewater treatment plant (WWTP) sludge at over <strong>90% of the particles</strong> entering the plant. This contaminated sludge is usually land-applied or incinerated, spreading microplastics into soils and food chains, threatening ecosystem health and crop safety.</p>
+                <p style="margin-top: 1rem;"><strong>Economic Impact:</strong> MP contamination forces municipalities to pay for costly sludge disposal (landfilling or incineration) instead of generating revenue by selling clean biosolids to agriculture—representing a significant lost opportunity.</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">Microplastics Captured in Sludge</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">💰</div>
+                    <div class="stat-label">Lost Revenue Opportunity</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">🌍</div>
+                    <div class="stat-label">Ecosystem Threat</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Solutions -->
+        <section class="section">
+            <h2 class="section-title">Current Solutions & Their Limitations</h2>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="icon">🔍</div>
+                    <h3>Coarse Filtration</h3>
+                    <p>Captures MPs in sludge but doesn't eliminate them. Particles remain concentrated in waste material.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="icon">⬇️</div>
+                    <h3>Sedimentation</h3>
+                    <p>Separates MPs from liquid stream but transfers the problem to solid waste without degradation.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="icon">⚙️</div>
+                    <h3>Mechanical Collectors</h3>
+                    <p>Require significant capital investment without addressing the fundamental disposal problem.</p>
+                </div>
+            </div>
+            <div class="problem-box" style="background: linear-gradient(135deg, #fff9e6 0%, #ffe6cc 100%); border-left-color: #f39c12;">
+                <h3 style="color: #d68910;">⚡ The Core Problem</h3>
+                <p>These methods merely concentrate microplastics—they don't destroy them. The fundamental question of what to do with MP-contaminated sludge remains unsolved.</p>
+            </div>
+        </section>
+
+        <!-- Our Solution -->
+        <section id="solution" class="section">
+            <h2 class="section-title">Our Solution: BioClean Bioreactor</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">A modular bioreactor system that uses plastic-degrading bacteria to actually destroy microplastics in WWTP sludge, converting them into biogas and clean biosolids.</p>
+            
+            <div class="bacteria-grid">
+                <div class="bacteria-card">
+                    <h4>🦠 Ideonella sakaiensis</h4>
+                    <p>Proven capability to break down PET plastics through enzymatic degradation, transforming persistent polymers into manageable compounds.</p>
+                    <span class="target">Target: PET</span>
+                </div>
+                <div class="bacteria-card">
+                    <h4>🦠 Streptomyces Species</h4>
+                    <p>Demonstrates activity against polyethylene and other common polymers found in wastewater sludge.</p>
+                    <span class="target">Target: PE & Others</span>
+                </div>
+            </div>
+
+            <h3 style="margin: 3rem 0 1.5rem; font-size: 2rem; color: #1e3c72;">System Components</h3>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="icon">🏭</div>
+                    <h3>Bioreactor Module</h3>
+                    <p>Controlled environment maintaining optimal conditions (temperature, pH, aeration) for maximum bacterial activity and MP degradation.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="icon">📊</div>
+                    <h3>Integrated Sensors</h3>
+                    <p>Real-time monitoring of microplastic concentration and degradation progress with automatic condition adjustments.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="icon">🔗</div>
+                    <h3>Digester Integration</h3>
+                    <p>Connects to existing anaerobic digesters, converting degraded plastic compounds into biogas alongside organic matter.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Innovation -->
+        <section id="innovation" class="section">
+            <h2 class="section-title">Innovation & Advantages</h2>
+            <div class="innovation-grid">
+                <div class="innovation-item">
+                    <h4>♻️ True Destruction</h4>
+                    <p>Actually destroys microplastics rather than merely separating them, eliminating long-term environmental persistence.</p>
+                </div>
+                <div class="innovation-item">
+                    <h4>🔧 Modular Design</h4>
+                    <p>Allows retrofit installation in existing plants without major infrastructure changes—minimizing disruption and cost.</p>
+                </div>
+                <div class="innovation-item">
+                    <h4>⚡ Biogas Generation</h4>
+                    <p>Converts degraded plastic compounds into renewable energy, creating additional revenue stream.</p>
+                </div>
+                <div class="innovation-item">
+                    <h4>💰 Economic Benefits</h4>
+                    <p>Reduces disposal costs while generating both biogas and sellable biosolids for agriculture.</p>
+                </div>
+                <div class="innovation-item">
+                    <h4>🌱 Circular Economy</h4>
+                    <p>Transforms waste problem into resource opportunity, supporting sustainable practices.</p>
+                </div>
+                <div class="innovation-item">
+                    <h4>📈 Scalable</h4>
+                    <p>Proven biological processes using established biotechnology methods, ready for gradual scale-up.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feasibility -->
+        <section id="feasibility" class="section">
+            <h2 class="section-title">Feasibility & Implementation</h2>
+            
+            <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); padding: 2rem; border-radius: 15px; margin-bottom: 3rem; border-left: 5px solid #27ae60;">
+                <h3 style="color: #1b5e20; margin-bottom: 1rem; font-size: 1.5rem;">✓ Proven Science</h3>
+                <p>Recent research has demonstrated that bacteria such as <em>Ideonella sakaiensis</em> can degrade PET plastics, while <em>Streptomyces</em> species show activity against other common polymers. Our system builds on this proven biological capability.</p>
+            </div>
+
+            <h3 style="margin: 2rem 0 1.5rem; font-size: 2rem; color: #1e3c72;">Phased Implementation Approach</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Phase 1: Laboratory Validation</h4>
+                        <p>Testing bacterial performance with actual WWTP sludge samples. Optimize conditions for maximum degradation efficiency.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Phase 2: Pilot-Scale Testing</h4>
+                        <p>Installation at partnering treatment facility. Real-world testing with continuous monitoring and adjustment.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Phase 3: Gradual Scale-Up</h4>
+                        <p>Expansion based on pilot results. Full integration with existing WWTP infrastructure.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 3rem;">
+                <h4 style="color: #2a5298; margin-bottom: 1rem; font-size: 1.4rem;">Required Components</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 0.8rem 0; border-bottom: 1px solid #ecf0f1;">✓ <strong>Bioreactor Vessel:</strong> Standard industrial biotechnology equipment</li>
+                    <li style="padding: 0.8rem 0; border-bottom: 1px solid #ecf0f1;">✓ <strong>Basic Sensors:</strong> pH, temperature, dissolved oxygen monitoring</li>
+                    <li style="padding: 0.8rem 0; border-bottom: 1px solid #ecf0f1;">✓ <strong>Bacterial Cultures:</strong> Commercially available or cultivable strains</li>
+                    <li style="padding: 0.8rem 0;">✓ <strong>Control Systems:</strong> Established automation technology</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Impact -->
+        <section id="impact" class="section">
+            <h2 class="section-title">Expected Impact</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Successful implementation would create value across multiple stakeholder groups while addressing a critical environmental challenge.</p>
+            
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="icon">🏛️</div>
+                    <h4>Municipalities</h4>
+                    <p>Reduced disposal costs and new revenue streams from selling clean biosolids. Lower regulatory risk.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="icon">🌾</div>
+                    <h4>Farmers</h4>
+                    <p>Access to affordable, safe organic fertilizers free from microplastic contamination.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="icon">🏘️</div>
+                    <h4>Communities</h4>
+                    <p>Reduced microplastic contamination in soil and water systems. Healthier environment.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="icon">♻️</div>
+                    <h4>Environment</h4>
+                    <p>Support for circular economy principles. Transformation of waste into valuable resources.</p>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); padding: 2rem; border-radius: 15px; margin-top: 3rem; text-align: center; border: 3px solid #ff9800;">
+                <h3 style="color: #e65100; font-size: 1.8rem; margin-bottom: 1rem;">🎯 Our Mission</h3>
+                <p style="font-size: 1.2rem; color: #bf360c;">Turn a waste problem into a resource opportunity while protecting our environment for future generations.</p>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2>Join Us in Revolutionizing Wastewater Treatment</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">Be part of the solution to microplastic pollution</p>
+            <a href="#contact" class="cta-button">Get Involved</a>
+        </div>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2 class="section-title">Get in Touch</h2>
+            <div style="background: white; padding: 3rem; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Interested in learning more about BioClean or partnering with us?</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                    <div>
+                        <h4 style="color: #1e3c72; margin-bottom: 0.5rem;">📧 Email</h4>
+                        <p>info@bioclean-project.com</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #1e3c72; margin-bottom: 0.5rem;">🔬 Research Inquiries</h4>
+                        <p>research@bioclean-project.com</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #1e3c72; margin-bottom: 0.5rem;">🤝 Partnerships</h4>
+                        <p>partners@bioclean-project.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>BioClean</h3>
+            <p>Bacterial Remediation of Microplastic-Contaminated Sludge</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">Focus Area: Green Chemistry</p>
+            <p style="margin-top: 2rem; opacity: 0.7;">&copy; 2026 BioClean Project. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
